@@ -2,7 +2,7 @@
 namespace app\bis\controller;
 use think\Controller;
 
-class Index extends Base
+class Index extends Common
 {
 	public function index()
 	{

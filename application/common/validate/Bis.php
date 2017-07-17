@@ -1,12 +1,11 @@
 <?php
 namespace app\common\validate;
 use think\Validate;
-class Bis extends Validate{
+class Bis extends Common{
 	protected $rule = [
 		['id', 'number'],
 		['name' , 'require|max:25', '商户名称不能为空|商户名称长度不能超过25字符'],
-	    ['city_id' , 'require|number|notIn:0', '所属城市不能为空|city_id必须为数字|必须选择所属城市'],
-	    ['se_city_id' , 'require|number|notIn:0', '所属二级城市不能为空|se_city_id必须为数字|必须选择所属二级城市'],
+	    
 	    ['logo' , 'require', '缩略图不能为空'],
 	    ['licence_logo' , 'require', '营业执照不能为空'],
 	    ['bank_info' , 'require|min:19|max:21', '银行账号不能为空|银行账号长度不能少于19位|银行账号长度不能超过21位'],

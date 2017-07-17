@@ -3,15 +3,8 @@ namespace app\admin\controller;
 
 use think\Controller;
 
-class Bis extends Controller
+class Bis extends Common
 {
-	private $obj, $val;
-
-	public function _initialize() {
-		$this->obj = Model('Bis');
-		$this->val = validate('Bis');
-	}
-
     /**
      * 状态为正常的商户列表
      * @Author   A-Li
@@ -83,7 +76,7 @@ class Bis extends Controller
 		}
 
 		// 获取商户数据
-		$bisData = Model('Bis')->get($id);
+		$bisData = $this->obj->get($id);
 		$locationData = Model('BisLocation')->get(['bis_id'=>$id, 'is_main'=>1]);
 		$accountData = Model('BisAccount')->get(['bis_id'=>$id, 'is_main'=>1]);
 
@@ -107,18 +100,7 @@ class Bis extends Controller
             'locationData' => $locationData,
         ]);
     }
-
-	public function reason($id = 0) {
-		$id = input('get.');
-		if(intval($id) < 1 && empty($id)) {
-            $this->error('参数不合法');
-        }
-
-		return $this->fetch('', [
-			'id' => $id,
-		]);
-	}
-
+	
 	//修改状态
     public function status() {
     	if(request()->isPost()) {
@@ -135,9 +117,7 @@ class Bis extends Controller
         }
 
         // 数据校验
-        if(!$this->val->scene('status')->check($data)) {
-            $this->error($this->val->getError());
-        }
+        $this->check('status', $data);
         
         // ↓标记：如果不是门店则为空，修改状态时作为判断依据
         $locationBisId = ''; 

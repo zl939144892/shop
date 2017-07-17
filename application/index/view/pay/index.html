@@ -1,0 +1,60 @@
+{include file='public/head'}
+<!--支付第二步-->
+    <div class="firstly">
+        <div class="search">
+            <a href="/"><img src="__STATIC__/index/image/logo.png" /></a>
+            <div class="w-order-nav-new">
+                <ul class="nav-wrap">
+                    <li>
+                        <div class="no"><span>1</span></div>
+                        <span class="text">确认订单</span>
+                    </li>
+                    <li class="to-line "></li>
+                    <li class="current">
+                        <div class="no"><span>2</span></div>
+                        <span class="text">选择支付方式</span>
+                    </li>
+                    <li class="to-line "></li>
+                    <li class="">
+                        <div class="no"><span>3</span></div>
+                        <span class="text">购买成功</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bindmobile-wrap">
+            购买成功后，团购券将发到您的注册邮箱：<span class="mobile">{$user->email}</span><a class="link"></a>
+        </div>
+
+        <table class="table table-goods"  cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <th class="first">订单编号</th>
+                <th width="140" class="last">总价</th>
+            </tr>
+                <tr class="j-row">
+                    <td class="j-vtop">
+                        <span class="font14">{$deal.out_trade_no}</span>
+                    </td>
+                    <td class="price font14">
+                        <span class="j-price">¥ {$deal.total_price}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form method="post" action="{:url('pay/paysuccess')}">
+        <div class="bindmobile-wrap">
+            <h2 style="font-size: 28px;color: #6b6b6b;">选择支付方式：
+            
+                <label style="font-size: 20px;color: #62b900;padding-left: 160px;"><input type="radio" name="pay"> 微信</input></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label style="font-size: 20px;color: #00a6e9;"><input type="radio" name="pay"> 支付宝</input></label>
+            </h2>
+        </div>
+        <div class="o2o_pay page-button-wrap">
+            <button style="border-width: 0px;" type="submit">
+                <h1 class="btn btn-primary">立 即 支 付</h1>
+            </button>
+        </div>
+</form>
+    </div>
+{include file='public/footer'}

@@ -10,7 +10,11 @@ class Image extends Controller
 	{
 		$file = Request::instance()->file('file');
 		// 定义上传目录
-		$info = $file->move('upload');
+		if($file) {
+			$info = $file->move('upload');
+		}else {
+			return show(0, 'file not exist');
+		}
 		if($info && $info->getPathName()) {
 			return show(1, 'success', '\\'.$info->getPathName());
 		}

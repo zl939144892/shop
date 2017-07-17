@@ -18,6 +18,10 @@ function status($status)
 		$str = '<span class="label label-success radius">正常</span>';
 	}elseif($status == 0) {
 		$str = '<span class="label label-danger radius">待审</span>';
+	}elseif($status == 2) {
+		$str = '<span class="label label-danger radius">已驳回</span>';
+	}elseif($status == 3) {
+		$str = '<span class="label label-danger radius">已过期</span>';
 	}else {
 		$str = '<span class="label label-danger radius">已删除</span>';
 	}
@@ -82,7 +86,9 @@ function pagination($obj) {
 		return '';
 	}
 
-	return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-o2o">'.$obj->render().'</div>';
+	$params = request()->param();// 获取当前页面链接中的参数
+
+	return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-o2o">'.$obj->appends($params)->render().'</div>';
 }
 
 // 审核页面获取城市
@@ -109,7 +115,7 @@ function getCategoryName($path) {
 			$category[$i] = Model('Category')->get($categoryId[$i]);
 			$name[$i] = $category[$i]->name;
 		}
-			// print_r($name);exit;
+
 		$categoryname = implode(' ', $name);
 	}else {
 		$categoryId = $path;
@@ -118,6 +124,29 @@ function getCategoryName($path) {
 	}
 	
 	return $categoryname;
+}
+
+// 审核页面获取门店名
+function getLocationName($path) {
+	if(empty($path)) {
+		return '';
+	}
+	if(preg_match('/,/', $path)) {
+		$locationPath = explode(',', $path);
+		$locationId = $locationPath;
+		for($i = 0; $i < count($locationPath); $i++) {
+			$location[$i] = Model('BisLocation')->get($locationId[$i]);
+			$name[$i] = $location[$i]->name;
+		}
+
+		$locationname = implode(' ', $name);
+	}else {
+		$locationId = $path;
+		$location = Model('BisLocation')->get($locationId);
+		$locationname = $location->name;
+	}
+	
+	return $locationname;
 }
 
 /**
@@ -135,4 +164,20 @@ function show($status, $message='', $data=[]) {
 		'message' => $message,
 		'data' => $data,
 	];
+}
+
+function countLocation($ids) {
+	if(preg_match('/,/', $ids)) {
+		$arr = explode(',', $ids);
+		return count($arr);
+	}else if($ids) {
+		return 1;
+	}
+}
+
+// 设置订单号
+function setOrderSn() {
+	list($t1, $t2) = explode(' ', microtime());
+	$t3 = explode('.', $t1*10000);
+	return $t2.$t3[0].(rand(10000,99999));
 }

@@ -2,7 +2,7 @@
 namespace app\bis\controller;
 use think\Controller;
 
-class Deal extends Base
+class Deal extends Common
 {
 	public function index()
 	{

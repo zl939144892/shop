@@ -89,7 +89,7 @@ class Register extends Controller
     		'tel' => $data['tel'],
     		'contact' => $data['contact'],
             'category_id' => $data['category_id'],
-    		'se_category_id' => empty($data['se_category_id']) ? '' : implode(',', $data['se_category_id']),
+    		'se_category_id' =>empty($data['se_category_id']) ? '' : implode(',', $data['se_category_id']),
     		'category_path' => $data['category_id'].','.$data['cate_id'],
     		'city_id' => $data['city_id'],
             'se_city_id' => $data['se_city_id'],

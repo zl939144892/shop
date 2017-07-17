@@ -2,7 +2,7 @@
 namespace app\bis\controller;
 use think\Controller;
 
-class Location extends Base
+class Location extends Common
 {
 	private $obj, $citys, $categorys, $val;
 

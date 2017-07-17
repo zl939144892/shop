@@ -2,27 +2,30 @@
 {include file="public/header" /}
 <body>
 <div class="page-container">
-	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('city/save')}">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商圈名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>城市名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
 			</div>
 		</div>
+		{if condition='$parentId eq 0'}
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商圈范围：</label>
+			<label class="form-label col-xs-4 col-sm-2">所属省份：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 				<select name="parent_id" class="select">
-					<option value="0">顶级商圈</option>
-					
-					<option value="">--</option>
-					
+					<option value="0">不选则为添加省份</option>
+					{volist name='citys' id='vo'}
+					<option value="{$vo.id}">--{$vo.name}</option>
+					{/volist}
 				</select>
 				</span>
 			</div>
 		</div>
-		
+		{else}
+		<input type="hidden" name="parent_id" value="{$parentId}">
+		{/if}
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>

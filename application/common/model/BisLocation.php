@@ -32,8 +32,18 @@ class BisLocation extends Common
 			'status' =>1,
 		];
 
-		$result = $this->where($data)
-					   ->select();
-		return $result;
+		return $this->where($data)
+					->select();
+	}
+
+	public function getNormalLocationInId($ids)
+	{
+		$data = [
+			'id' => ['in', $ids],
+			'status' =>1,
+		];
+
+		return $this->where($data)
+					->select();
 	}
 }
