@@ -6,8 +6,17 @@ class Deal extends Common
 {
 	public function index()
 	{
-		// 
-		return $this->fetch();
+		$bisId = $this->getLoginUser()->bis_id;
+
+		try {
+			$deals = Model('deal')->getNormalDealsByBisId($bisId);
+		}catch(\Exception $e) {
+			$this->error($e->getMessage());
+		}
+
+		return $this->fetch('', [
+			'deals' => $deals,
+		]);
 	}
 
 	public function add()

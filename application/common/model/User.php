@@ -36,4 +36,14 @@ class User extends Common
 		return $this->where($data)
 					->find();
 	}
+
+	public function getUser($status)
+	{
+		$data = [
+			'status'=> $status,
+		];
+
+		return $this->where($data)
+					->paginate();
+	}
 }

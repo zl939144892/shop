@@ -55,7 +55,7 @@ class Login extends Controller
 
 	public function logout()
 	{
-		// 清楚session
+		// 清除session
 		session(null, 'bis');
 		$this->redirect('login/index');
 	}

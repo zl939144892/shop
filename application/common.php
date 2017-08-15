@@ -29,6 +29,19 @@ function status($status)
 	return $str;
 }
 
+function pay_status($status)
+{
+	if($status == 1) {
+		$str = '<span class="label label-success radius">支付成功</span>';
+	}elseif($status == 0) {
+		$str = '<span class="label label-danger radius">未支付</span>';
+	}elseif($status == 2) {
+		$str = '<span class="label label-wait radius">支付失败</span>';
+	}
+
+	return $str;
+}
+
 function isMain($isMain)
 {
 	if($isMain == 1) {

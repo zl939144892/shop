@@ -6,6 +6,11 @@ class Index extends Common
 {
 	public function index()
 	{
-		return $this->fetch();
+        $users = $this->getLoginUser();
+        $user = $users['username'];
+
+		return $this->fetch('', [
+            'user' => $user,
+        ]);
 	}
 }

@@ -126,6 +126,17 @@ function check(data, id, name, url){
 };
 
 /**
+ * 动态校验密码长度是否合法
+ */
+function checkpwd(data, id, name){
+	//抛送请求
+	document.getElementById(id).innerHTML='';	// 先把提示值设为空，当再次循环是重复调用，覆盖提示信息
+	if(data.length < 8) {
+		document.getElementById(id).innerHTML='&nbsp;&nbsp;密码长度过短';	// 抛出提示信息
+	};
+};
+
+/**
  * 查看审核返回状态
  */
 function checkstatus(status, id, name, url){

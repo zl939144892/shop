@@ -15,6 +15,21 @@ class Deal extends Common
 		return $result;
 	}
 
+	public function getNormalDealsByBisId($id = 0) {
+		if($id == 0 || !is_numeric($id)){
+			exception('非法访问！');
+		}else {
+			$data = [
+				'status' => ['neq',-1],
+				'end_time' => ['gt', time()],
+			];
+
+			$result = $this->where($data)
+						   ->paginate();
+			return $result;
+		}
+	}
+
 	/**
 	 * [根据分类和城市获取相关数据]
 	 * @Author   A-Li

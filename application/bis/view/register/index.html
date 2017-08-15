@@ -176,11 +176,13 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码:</label>
 			<div class="formControls col-xs-8 col-sm-3">
-				<input type="password" class="input-text" value="" placeholder="" id="" name="password">
-				<div id="prompt_information_mes">（密码长度需大于8位）</div>
+				<input type="password" class="input-text" value="" placeholder="" id="" name="password" onkeyup="checkpwd(this.value, 'password-status', this.name)">
 				<br/>
-					<div id="prompt_information_mes">所有带*内容都需要填写哦</div>
+					<div style="margin-top: 20px" id="prompt_information_mes">所有带*内容都需要填写哦</div>
 				<br/>
+			</div>
+			<div style="float:left">
+				<span class="c-red" id="password-status"></span>
 			</div>
 		</div>
 		<div class="row cl">

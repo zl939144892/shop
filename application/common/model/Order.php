@@ -5,4 +5,13 @@ use think\Model;
 
 class Order extends Common
 {
+	public function getOrder($status)
+	{
+		$data = [
+			'status'=> $status,
+		];
+
+		return $this->where($data)
+					->paginate();
+	}
 }

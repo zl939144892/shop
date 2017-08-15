@@ -9,7 +9,7 @@ class Deal extends Common
     	$datas = $categoryArrs = $cityArrs = [];// 初始化数据，要用到
         $data = input('get.');
         if($data) {
-            print_r($data);exit;
+            // print_r($data);exit;
             // 查询
         	if(!empty($data)){
         		// 把时间这个条件放到最前面，有利于优化SQL的查询速度
